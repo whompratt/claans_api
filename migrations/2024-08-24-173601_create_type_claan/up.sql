@@ -1,0 +1,6 @@
+CREATE TYPE claan AS ENUM (
+    'EARTH_STRIDERS',
+    'FIRE_DANCERS',
+    'THUNDER_WALKERS',
+    'WAVE_RIDERS'
+);
