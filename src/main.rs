@@ -1,34 +1,23 @@
-#[macro_use] extern crate rocket;
+#[macro_use]
+extern crate rocket;
 
-#[derive(FromForm)]
-struct Options<'r> {
-    name: Option<&'r str>,
-}
+mod schema;
 
-#[get("/world")]
-fn world() -> &'static str {
-    "Hello, world!"
-}
+use dotenvy::dotenv;
+use std::env;
 
-#[get("/?<opt..>")]
-fn hello(opt: Options<'_>) -> String {
-    let mut greeting = String::new();
-
-    greeting.push_str("Hello, ");
-
-    if let Some(name) = opt.name {
-        greeting.push_str(name);
-    } else {
-        greeting.push_str("world");
-    }
-
-    greeting.push('!');
-    greeting
+#[get("/")]
+fn hello() -> String {
+    String::from("Hello, world!")
 }
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build()
-        .mount("/", routes![hello])
-        .mount("/hello", routes![world])
+    dotenv().expect(".env file not found");
+
+    for (key, value) in env::vars() {
+        println!("{key}: {value}");
+    }
+
+    rocket::build().mount("/", routes![hello])
 }
