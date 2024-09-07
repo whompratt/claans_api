@@ -1,5 +1,5 @@
-use crate::schema::users;
 use diesel::prelude::*;
+use infrastructure::schema::users;
 use rocket::serde::{Deserialize, Serialize};
 use std::cmp::{Eq, Ord, PartialEq, PartialOrd};
 

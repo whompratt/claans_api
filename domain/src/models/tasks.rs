@@ -1,8 +1,8 @@
 use crate::models::dice::Dice;
 use crate::models::tasktype::Tasktype;
-use crate::schema::tasks;
 use chrono::NaiveDate;
 use diesel::prelude::*;
+use infrastructure::schema::tasks;
 use rocket::serde::{Deserialize, Serialize};
 use std::cmp::{Eq, Ord, PartialEq, PartialOrd};
 

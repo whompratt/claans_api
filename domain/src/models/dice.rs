@@ -5,7 +5,7 @@ use diesel::serialize::{self, IsNull, Output, ToSql};
 use std::io::Write;
 
 #[derive(Debug, AsExpression, FromSqlRow, Ord, Eq, PartialEq, PartialOrd)]
-#[diesel(sql_type = crate::schema::sql_types::Dice)]
+#[diesel(sql_type = infrastructure::schema::sql_types::Dice)]
 #[derive(serde::Serialize, serde::Deserialize)]
 pub enum Dice {
     D4,
@@ -15,7 +15,7 @@ pub enum Dice {
     D12,
 }
 
-impl ToSql<crate::schema::sql_types::Dice, Pg> for Dice {
+impl ToSql<infrastructure::schema::sql_types::Dice, Pg> for Dice {
     fn to_sql<'b>(&'b self, out: &mut Output<'b, '_, Pg>) -> serialize::Result {
         match *self {
             Dice::D4 => out.write_all(b"d4")?,
@@ -28,7 +28,7 @@ impl ToSql<crate::schema::sql_types::Dice, Pg> for Dice {
     }
 }
 
-impl FromSql<crate::schema::sql_types::Dice, Pg> for Dice {
+impl FromSql<infrastructure::schema::sql_types::Dice, Pg> for Dice {
     fn from_sql(bytes: PgValue) -> deserialize::Result<Self> {
         match bytes.as_bytes() {
             b"d4" => Ok(Dice::D4),
