@@ -1,6 +1,6 @@
-use crate::schema::records;
 use chrono::NaiveDate;
 use diesel::prelude::*;
+use infrastructure::schema::records;
 use rocket::serde::{Deserialize, Serialize};
 use std::cmp::{Eq, Ord, PartialEq, PartialOrd};
 
