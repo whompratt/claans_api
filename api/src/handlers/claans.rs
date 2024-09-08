@@ -1,14 +1,10 @@
-use application::claans::read;
-use domain::models::claans::Claan;
-use rocket::get;
-use rocket::response::status::NotFound;
-use rocket::serde::json::Json;
-use shared::response_models::{Response, ResponseBody};
-
 use application::claans::create;
-use domain::models::claans::NewClaan;
-use rocket::post;
-use rocket::response::status::Created;
+use application::claans::read;
+use domain::models::claans::{Claan, NewClaan};
+use rocket::response::status::{Created, NotFound};
+use rocket::serde::json::Json;
+use rocket::{get, post};
+use shared::response_models::{Response, ResponseBody};
 
 #[get("/claans")]
 pub fn get_claans() -> String {
