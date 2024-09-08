@@ -64,10 +64,4 @@ diesel::joinable!(records -> tasks (task_id));
 diesel::joinable!(records -> users (user_id));
 diesel::joinable!(users -> claans (claan_id));
 
-diesel::allow_tables_to_appear_in_same_query!(
-    claans,
-    records,
-    seasons,
-    tasks,
-    users,
-);
+diesel::allow_tables_to_appear_in_same_query!(claans, records, seasons, tasks, users,);
