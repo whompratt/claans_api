@@ -20,7 +20,7 @@ pub fn list_claan(claan_id: i32) -> Result<Claan, NotFound<String>> {
                         claan_id, err
                     )),
                 };
-                return Err(NotFound(serde_json::to_string(&response).unwrap()));
+                Err(NotFound(serde_json::to_string(&response).unwrap()))
             }
             _ => {
                 panic!("Database error - {}", err);
@@ -40,10 +40,8 @@ pub fn list_claans() -> Vec<Claan> {
             claans.sort();
             claans
         }
-        Err(err) => match err {
-            _ => {
-                panic!("Database error - {}", err);
-            }
+        Err(err) => {
+            panic!("Database error - {}", err);
         },
     }
 }

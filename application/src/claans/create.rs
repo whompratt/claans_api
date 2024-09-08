@@ -20,10 +20,8 @@ pub fn create_claan(claan: Json<NewClaan>) -> Created<String> {
             };
             Created::new("").tagged_body(serde_json::to_string(&response).unwrap())
         }
-        Err(err) => match err {
-            _ => {
-                panic!("Database error - {}", err);
-            }
+        Err(err) => {
+            panic!("Database error - {}", err);
         },
     }
 }
