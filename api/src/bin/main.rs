@@ -10,6 +10,8 @@ fn rocket() -> _ {
             handlers::claans::get_claan,
             handlers::claans::get_claans,
             handlers::claans::create_claan,
+            handlers::claans::update_claan,
+            handlers::claans::delete_claan,
         ],
     )
 }
