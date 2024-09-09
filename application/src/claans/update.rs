@@ -6,26 +6,25 @@ use rocket::serde::json::Json;
 use shared::response_models::{Response, ResponseBody};
 
 pub fn update_claan(claan: Json<Claan>) -> Result<Claan, NotFound<String>> {
-    use infrastructure::schema::claans;
+    // TODO: Add filter so update isn't applying to ALL rows
+    use infrastructure::schema::claans::dsl::*;
 
-    match diesel::update(claans::table)
+    match diesel::update(claans.find(claan.id))
         .set(claan.into_inner())
         .returning(Claan::as_returning())
         .get_result::<Claan>(&mut establish_connection())
     {
-        Ok(claan_) => claan_,
+        Ok(claan_) => Ok(claan_),
         Err(err) => match err {
             diesel::result::Error::NotFound => {
                 let response = Response {
                     body: ResponseBody::Message(format!("Error updating claan - {}", err)),
                 };
-                return Err(NotFound(serde_json::to_string(&response).unwrap()));
+                Err(NotFound(serde_json::to_string(&response).unwrap()))
             }
             _ => {
                 panic!("Database error - {}", err);
             }
         },
-    };
-
-    todo!();
+    }
 }
