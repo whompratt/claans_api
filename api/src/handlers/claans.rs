@@ -31,7 +31,7 @@ pub fn create_claan(claan: Json<NewClaan>) -> Created<String> {
 }
 
 #[patch("/claans", format = "application/json", data = "<claan>")]
-pub fn update_claan(claan_id: i32, claan: Json<Claan>) -> Result<String, NotFound<String>> {
+pub fn update_claan(claan: Json<Claan>) -> Result<String, NotFound<String>> {
     let claan = update::update_claan(claan)?;
     let response = Response {
         body: ResponseBody::Claan(claan),

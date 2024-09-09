@@ -3,7 +3,17 @@ use infrastructure::schema::claans;
 use rocket::serde::{Deserialize, Serialize};
 use std::cmp::{Eq, Ord, PartialEq, PartialOrd};
 
-#[derive(Queryable, Serialize, Ord, Eq, PartialOrd, PartialEq, AsChangeset, Selectable)]
+#[derive(
+    Queryable,
+    Serialize,
+    Ord,
+    Eq,
+    PartialOrd,
+    PartialEq,
+    AsChangeset,
+    Selectable,
+    serde::Deserialize,
+)]
 pub struct Claan {
     pub id: i32,
     pub name: String,
