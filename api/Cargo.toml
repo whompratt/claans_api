@@ -8,5 +8,5 @@ domain = { path = "../domain" }
 application = { path = "../application" }
 shared = { path = "../shared" }
 
-rocket = { version = "0.5.1", features = ["json"] }
+rocket = { version = "0.5.1", features = ["json", "secrets"] }
 serde_json = { version = "1.0.128" }
