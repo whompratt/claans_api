@@ -54,17 +54,17 @@ diesel::table! {
 diesel::table! {
     users (id) {
         id -> Int4,
-        claan_id -> Int4,
-        created_at -> Timestamp,
-        updated_at -> Timestamp,
         name -> Varchar,
+        claan_id -> Int4,
         #[max_length = 120]
         email -> Varchar,
         password_hash -> Bytea,
+        active -> Bool,
         #[max_length = 23]
         current_auth_token -> Nullable<Varchar>,
+        created_at -> Timestamp,
+        updated_at -> Timestamp,
         last_action -> Nullable<Timestamp>,
-        active -> Bool,
     }
 }
 
