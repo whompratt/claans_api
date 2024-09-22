@@ -8,7 +8,7 @@ use std::cmp::{Eq, Ord, PartialEq, PartialOrd};
 use std::fmt;
 
 #[derive(
-    Debug, Serialize, Ord, Eq, PartialOrd, PartialEq, Queryable, Identifiable, AsChangeset,
+    Queryable, Selectable, Serialize, Deserialize, Ord, Eq, PartialOrd, PartialEq, AsChangeset,
 )]
 pub struct User {
     pub id: i32,
@@ -36,18 +36,26 @@ pub struct NewUser {
 
 impl fmt::Display for User {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let claan_name: String = match self.get_claan() {
+            Some(claan) => claan.name,
+            None => String::from("no claan"),
+        };
+
         write!(
             f,
-            "<User {name}, {email}",
+            "<User {name}, {email}, in {claan_name}",
             name = self.name,
-            email = self.email
+            email = self.email,
+            claan_name = claan_name,
         )
     }
 }
 
 impl User {
-    pub fn get_claan(&self) -> Claan {
-        let claan = read::list_claan(self.claan_id);
-        todo!();
+    pub fn get_claan(&self) -> Option<Claan> {
+        match read::list_claan(self.claan_id) {
+            Ok(claan) => Some(claan),
+            Err(_) => None,
+        }
     }
 }

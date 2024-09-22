@@ -1,6 +1,6 @@
 #[macro_use]
 extern crate rocket;
-use api::handlers::claans;
+use api::routes::claans;
 
 #[launch]
 fn rocket() -> _ {

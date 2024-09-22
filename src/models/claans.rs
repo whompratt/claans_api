@@ -4,15 +4,7 @@ use rocket::serde::{Deserialize, Serialize};
 use std::cmp::{Eq, Ord, PartialEq, PartialOrd};
 
 #[derive(
-    Queryable,
-    Serialize,
-    Ord,
-    Eq,
-    PartialOrd,
-    PartialEq,
-    AsChangeset,
-    Selectable,
-    serde::Deserialize,
+    Queryable, Selectable, Serialize, Deserialize, Ord, Eq, PartialOrd, PartialEq, AsChangeset,
 )]
 pub struct Claan {
     pub id: i32,
