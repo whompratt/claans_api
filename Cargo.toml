@@ -1,9 +1,17 @@
-[workspace]
-resolver = "2"
-members = [
-    "infrastructure",
-    "api",
-    "domain",
-    "shared",
-    "application"
-]
+[package]
+name = "claans-api"
+version = "0.1.0"
+edition = "2021"
+authors = ["Jake Ratcliffe <jaker1342@gmail.com>"]
+
+[lib]
+name = "api"
+path = "src/lib.rs"
+
+[dependencies]
+rocket = { version = "0.5.1", features = ["json", "secrets"] }
+serde = { version = "1.0.210", features = ["derive"] }
+serde_json = { version = "1.0.128" }
+diesel = { version = "2.2.3", features = ["postgres", "chrono"] }
+chrono = { version = "0.4.38", features = ["serde"]}
+dotenvy = "0.15.7"
