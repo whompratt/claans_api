@@ -1,6 +1,10 @@
 use crate::crud::claans::read;
 use crate::database::schema::users;
 use crate::models::claans::Claan;
+use argon2::{
+    password_hash::{rand_core::OsRng, PasswordHash, PasswordHasher, PasswordVerifier, SaltString},
+    Argon2,
+};
 use chrono::NaiveDateTime;
 use diesel::prelude::*;
 use rocket::serde::{Deserialize, Serialize};
@@ -58,4 +62,18 @@ impl User {
             Err(_) => None,
         }
     }
+
+    // pub fn make_password_hash(password: &str) -> Vec<u8> {
+    //     let salt = SaltString::generate(&mut OsRng);
+    //     let mut output_key_material = [0u8; 32];
+
+    //     match Argon2::default().hash_password_into(
+    //         password.as_bytes(),
+    //         &salt.as_str().as_bytes(),
+    //         &mut output_key_material,
+    //     ) {
+    //         Ok(_) => output_key_material.to_vec(),
+    //         Err(err) => panic!("Error hashing password - {}", err),
+    //     }
+    // }
 }
