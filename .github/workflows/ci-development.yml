@@ -2,7 +2,7 @@ name: Rust
 
 on:
   push:
-    branches: [ "development" ]
+    branches: [ "development", "zero-to-prod" ]
   pull_request:
     branches: [ "development" ]
 
