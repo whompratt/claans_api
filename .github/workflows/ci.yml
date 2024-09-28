@@ -32,11 +32,13 @@ jobs:
         image: redis:7
         ports:
           - 6379:6379
-    
     steps:
-      - name: Checkout respository
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Install the Rust toolchain
         uses: actions-rust-lang/setup-rust-toolchain@v1
-      
+
       - name: Install sqlx-cli
         run:
           cargo install sqlx-cli
@@ -44,25 +46,25 @@ jobs:
           --features ${{ env.SQLX_FEATURES }}
           --no-default-features
           --locked
-      
-      - name: Create app user in postgres
+
+      - name: Create app user in Postgres
         run: |
           sudo apt-get install postgresql-client
 
           CREATE_QUERY="CREATE USER ${APP_USER} WITH PASSWORD '${APP_USER_PWD}';"
-          PHPASSWORD="password" psql -U "postgres" -h "localhost" -c "${CREATE_QUERY}"
+          PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${CREATE_QUERY}"
 
           GRANT_QUERY="ALTER USER ${APP_USER} CREATEDB;"
           PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${GRANT_QUERY}"
-        
+
       - name: Migrate database
         run: |
           SKIP_DOCKER=true ./scripts/init_db.sh
-      
+
       - name: Run tests
         run: cargo test
-      
-      - name: Check queries are fresh
+
+      - name: Check that queries are fresh
         run: cargo sqlx prepare --workspace --check -- --all-targets
   
   fmt:
@@ -123,11 +125,9 @@ jobs:
         run: |
           sudo apt-get install postgresql-client
 
-          # Create the application user
           CREATE_QUERY="CREATE USER ${APP_USER} WITH PASSWORD '${APP_USER_PWD}';"
           PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${CREATE_QUERY}"
 
-          # Grant create db privileges to the app user
           GRANT_QUERY="ALTER USER ${APP_USER} CREATEDB;"
           PGPASSWORD="password" psql -U "postgres" -h "localhost" -c "${GRANT_QUERY}"
       - name: Migrate database
