@@ -2,10 +2,10 @@ name: Rust
 
 on:
   push:
-    branches: [ "main", "development", "zero-to-prod" ]
+    branches: [ "main", "development" ]
   pull_request:
     types: [ opened, synchronize, reopened ]
-    branches: [ "main", "development", "zero-to-prod" ]
+    branches: [ "main", "development" ]
 
 env:
   CARGO_TERM_COLOR: always
@@ -13,7 +13,7 @@ env:
   SQLX_FEATURES: "rustls,postgres"
   APP_USER: app
   APP_USER_PWD: secret
-  APP_DB_NAME: claans
+  APP_DB_NAME: claans_api
 
 jobs:
   test:
