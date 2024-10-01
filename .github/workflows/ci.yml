@@ -13,7 +13,7 @@ env:
   SQLX_FEATURES: "rustls,postgres"
   APP_USER: app
   APP_USER_PWD: secret
-  APP_DB_NAME: claans_api
+  APP_DB_NAME: claans
 
 jobs:
   test:
@@ -28,10 +28,6 @@ jobs:
           POSTGRES_DB: postgres
         ports:
           - 5432:5432
-      redis:
-        image: redis:7
-        ports:
-          - 6379:6379
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
