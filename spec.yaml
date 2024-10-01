@@ -1,5 +1,8 @@
 name: claans-api
 region: lon
+domains:
+  - domain: claans.com
+    type: PRIMARY
 services:
   - name: claans-api
     dockerfile_path: Dockerfile
