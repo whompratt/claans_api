@@ -15,6 +15,22 @@ services:
     instance_size_slug: basic-xxs
     routes:
       - path: /
+    envs:
+      - key: APP_DATABASE__USERNAME
+        scope: RUN_TIME
+        value: ${claans.USERNAME}
+      - key: APP_DATABASE__PASSWORD
+        scope: RUN_TIME
+        value: ${claans.PASSWORD}
+      - key: APP_DATABASE__HOSTNAME
+        scope: RUN_TIME
+        value: ${claans.HOSTNAME}
+      - key: APP_DATABASE__PORT
+        scope: RUN_TIME
+        value: ${claans.PORT}
+      - key: APP_DATABASE__DATABASE_NAME
+        scope: RUN_TIME
+        value: ${claans.DATABASE}
 databases:
   - engine: PG
     name: claans
