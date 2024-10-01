@@ -1,2 +1,2 @@
-# claans-rs
-Claans 3.0 - A Rewrite in Rust
+# claans_api
+A Rust based backend API for the Claan portal, used by Advancing Analytics.
