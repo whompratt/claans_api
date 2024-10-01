@@ -37,6 +37,5 @@ services:
 databases:
   - engine: PG
     name: claans
-    num_nodes: 1
-    size: db-s-dev-database
+    production: true
     version: "16"
