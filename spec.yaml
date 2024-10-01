@@ -40,3 +40,5 @@ databases:
     version: "16"
     production: true
     cluster_name: app-5d02188a-a8f1-4837-b692-47c0693e7ca4
+    db_name: claans
+    db_user: claans
