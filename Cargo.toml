@@ -1,5 +1,5 @@
 [package]
-name = "claans-api"
+name = "claans_api"
 version = "0.1.0"
 edition = "2021"
 authors = ["Jake Ratcliffe <jaker1342@gmail.com>"]
@@ -9,7 +9,7 @@ path = "src/lib.rs"
 
 [[bin]]
 path = "src/main.rs"
-name = "claans-api"
+name = "claans_api"
 
 [dependencies]
 actix-web = "4.9.0"
