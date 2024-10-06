@@ -3,7 +3,7 @@ use wiremock::matchers::{method, path};
 use wiremock::{Mock, ResponseTemplate};
 
 #[tokio::test]
-async fn subscribe_returns_200_for_valid_form_data() {
+async fn register_returns_200_for_valid_form_data() {
     // Arrange
     let app = spawn_app().await;
     let body = "name=le%20guin&email=ursula_le_guin%40gmail.com";
@@ -20,7 +20,7 @@ async fn subscribe_returns_200_for_valid_form_data() {
     // Assert
     assert_eq!(200, response.status().as_u16());
 
-    let saved = sqlx::query!("SELECT email, name FROM subscriptions",)
+    let saved = sqlx::query!("SELECT email, name FROM users",)
         .fetch_one(&app.db_pool)
         .await
         .expect("Failed to fetch saved subcription");
@@ -30,7 +30,7 @@ async fn subscribe_returns_200_for_valid_form_data() {
 }
 
 #[tokio::test]
-async fn subscribe_returns_400_for_missing_data() {
+async fn register_returns_400_for_missing_data() {
     // Arrange
     let app = spawn_app().await;
     let test_cases = vec![
@@ -54,7 +54,7 @@ async fn subscribe_returns_400_for_missing_data() {
 }
 
 #[tokio::test]
-async fn subscribe_returns_400_when_fields_are_present_but_empty() {
+async fn register_returns_400_when_fields_are_present_but_empty() {
     // Arrange
     let app = spawn_app().await;
     let test_cases = vec![
@@ -78,7 +78,7 @@ async fn subscribe_returns_400_when_fields_are_present_but_empty() {
 }
 
 #[tokio::test]
-async fn subscribe_sends_a_confirmation_email_for_valid_data() {
+async fn register_sends_a_confirmation_email_for_valid_data() {
     // Arrange
     let app = spawn_app().await;
     let body = "name=le&20guin&email=ursula_le_guin%40gmail.com";
@@ -98,7 +98,7 @@ async fn subscribe_sends_a_confirmation_email_for_valid_data() {
 }
 
 #[tokio::test]
-async fn subscribe_sends_a_confirmation_email_with_a_link() {
+async fn register_sends_a_confirmation_email_with_a_link() {
     // Arrange
     let app = spawn_app().await;
     let body = "name=le&20guin&email=ursula_le_guin%40gmail.com";

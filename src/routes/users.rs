@@ -28,7 +28,7 @@ impl TryFrom<FormData> for NewUser {
 pub async fn insert_user(pool: &PgPool, new_user: &NewUser) -> Result<(), sqlx::Error> {
     sqlx::query!(
         r#"
-            INSERT INTO subscriptions (id, email, name, subscribed_at, status)
+            INSERT INTO users (id, email, name, registered_at, status)
             VALUES($1, $2, $3, $4, 'confirmed')
         "#,
         Uuid::new_v4(),
