@@ -29,7 +29,7 @@ pub async fn insert_user(pool: &PgPool, new_user: &NewUser) -> Result<(), sqlx::
     sqlx::query!(
         r#"
             INSERT INTO users (id, email, name, registered_at, status)
-            VALUES($1, $2, $3, $4, 'confirmed')
+            VALUES($1, $2, $3, $4, 'pending_confirmation')
         "#,
         Uuid::new_v4(),
         new_user.email.as_ref(),
