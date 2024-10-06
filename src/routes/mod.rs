@@ -1,7 +1,7 @@
 mod health_check;
-mod register_confirm;
 mod users;
+mod users_confirm;
 
 pub use health_check::*;
-pub use register_confirm::*;
 pub use users::*;
+pub use users_confirm::*;
