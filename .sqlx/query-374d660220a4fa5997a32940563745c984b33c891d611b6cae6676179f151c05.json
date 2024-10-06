@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "SELECT email, name FROM users",
+  "query": "SELECT email, name, status FROM users",
   "describe": {
     "columns": [
       {
@@ -12,6 +12,11 @@
         "ordinal": 1,
         "name": "name",
         "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "status",
+        "type_info": "Text"
       }
     ],
     "parameters": {
@@ -19,8 +24,9 @@
     },
     "nullable": [
       false,
+      false,
       false
     ]
   },
-  "hash": "2f3ac24a1f0ab80571c69dfc30a1614881804ac9ca4df8999675334f71edfef3"
+  "hash": "374d660220a4fa5997a32940563745c984b33c891d611b6cae6676179f151c05"
 }
