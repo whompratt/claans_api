@@ -1,7 +1,7 @@
 -- Add migration script here
 BEGIN;
-    UPDATE subscriptions
+    UPDATE users
         SET status = 'confirmed'
         WHERE status IS NULL;
-    ALTER TABLE subscriptions ALTER COLUMN status SET NOT NULL;
+    ALTER TABLE users ALTER COLUMN status SET NOT NULL;
 COMMIT;
