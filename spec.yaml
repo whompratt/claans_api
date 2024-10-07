@@ -3,13 +3,6 @@ region: lon
 domains:
 - domain: claans.com
   type: PRIMARY
-ingress:
-  rules:
-  - component:
-      name: api
-    match:
-      path:
-        prefix: /api
 services:
 - name: api
   dockerfile_path: Dockerfile
@@ -42,9 +35,14 @@ services:
   - key: APP_DATABASE__DATABASE_NAME
     scope: RUN_TIME
     value: ${claans.DATABASE}
+  - key: APP_EMAIL_CLIENT__AUTHORIZATION_TOKEN
+    scope: RUN_TIME
+    type: SECRET
 databases:
-- engine: PG
-  name: claans
-  num_nodes: 1
-  size: db-s-dev-database
+- name: claansdb
+  engine: PG
   version: "16"
+  production: true
+  cluster_name: claansdb
+  db_name: claans
+  db_user: claans
