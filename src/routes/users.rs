@@ -132,7 +132,7 @@ pub async fn send_confirmation_email(
         .send_email(
             new_user.email,
             "Welcome to Claans!",
-            &html_body,
+            html_body,
             &plain_body,
         )
         .await
