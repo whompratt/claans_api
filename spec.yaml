@@ -35,9 +35,6 @@ services:
   - key: APP_DATABASE__DATABASE_NAME
     scope: RUN_TIME
     value: ${claans.DATABASE}
-  - key: APP_EMAIL_CLIENT__AUTHORIZATION_TOKEN
-    scope: RUN_TIME
-    type: SECRET
 databases:
 - name: claansdb
   engine: PG
