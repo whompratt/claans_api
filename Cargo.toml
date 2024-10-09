@@ -13,6 +13,7 @@ name = "claans_api"
 
 [dependencies]
 actix-web = "4.9.0"
+anyhow = "1.0.89"
 chrono = "0.4.38"
 config = "0.14.0"
 rand = { version = "0.8.5", features = ["std_rng"] }
@@ -20,6 +21,7 @@ secrecy = { version = "0.10.2", features = ["serde"] }
 serde = { version = "1.0.210", features = ["derive"] }
 serde-aux = "4.5.0"
 sqlx = { version = "0.8.2", default-features = false, features = ["runtime-tokio-rustls", "macros", "postgres", "uuid", "chrono", "migrate"] }
+thiserror = "1.0.64"
 tokio = { version = "1.40.0", features = ["macros", "rt-multi-thread"] }
 tracing = { version = "0.1.40", features = ["log"] }
 tracing-actix-web = "0.7.13"
