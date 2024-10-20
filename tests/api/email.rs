@@ -90,7 +90,7 @@ async fn emails_are_delivered_to_confirmed_subscribers() {
 }
 
 #[tokio::test]
-async fn emails_returns_400_for_invalid_data() {
+async fn email_returns_400_for_invalid_data() {
     // Arrange
     let app = spawn_app().await;
     let test_cases = vec![
