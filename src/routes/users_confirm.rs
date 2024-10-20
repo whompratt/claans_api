@@ -3,7 +3,7 @@ use anyhow::Context;
 use sqlx::PgPool;
 use uuid::Uuid;
 
-use super::error_chain_fmt;
+use crate::routes::helpers::error_chain_fmt;
 
 #[derive(serde::Deserialize)]
 pub struct Parameters {
