@@ -6,7 +6,7 @@ use actix_web::HttpRequest;
 use actix_web::HttpResponse;
 use actix_web::ResponseError;
 use anyhow::Context;
-use base64::{engine, Engine};
+use base64::Engine;
 use secrecy::SecretString;
 use sqlx::PgPool;
 
